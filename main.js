@@ -54,7 +54,7 @@ const culcToppings = (curry) => {
 
 // 起動時イベント
 window.addEventListener('load', () => {
-    console.log('えっふカレーへようこそ！！！！！！！！１');
+    console.log('カレーは飲み物です');
     makeToppings();
     refreshSum();
 
