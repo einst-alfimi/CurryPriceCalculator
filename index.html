@@ -5,22 +5,9 @@
         border-radius: 0.5em;
     }
 </style>
+<script type="text/javascript" async="" src="./data.js"></script>
 <script>
-// データ（作っといてください）
-const toppings = [
-    {
-        name:'スクランブルエッグ',
-        price:154
-    },
-    {
-        name:'完熟カットトマト',
-        price:103
-    },
-    {
-        name:'ガーリック',
-        price:51
-    }
-]
+
 // トッピング生成(トッピング以外も生成したい)
 const makeToppings = () => {
     const elem = document.getElementById('toppings-main');
@@ -44,9 +31,10 @@ const refreshSum = () => {
     const curry = document.getElementById('curry');
     const sauce = Number(curry.sauce.value);
     const rice = Number(curry.rice.value);
-    const spice = Number(curry.spice.value);
+    const spice = Number(curry.spiciness.value);
+    const sweet = Number(curry.sweetness.value);
     const toppings = Number(culcToppings(curry));
-    const sum = sauce + rice + spice + toppings;
+    const sum = sauce + rice + spice + sweet + toppings;
     const remind = 900 - sum;
 
     // dom更新
@@ -92,7 +80,8 @@ window.addEventListener('load', () => {
             <span>ソース</span>
         </div>
         <div class="col-10">
-            <label><input type="radio" name="sauce" value="505" checked="true">ポーク</label>
+            <label><input type="radio" name="sauce" value="505" checked="true">ポーク(甘口含む)</label>
+            <label><input type="radio" name="sauce" value="629" checked="true">ビーフ/ハッシュドビーフ</label>
         </div>
     </div>
     <div id="rice" class="row">
@@ -103,15 +92,36 @@ window.addEventListener('load', () => {
             <label><input type="radio" name="rice" value="-51">200g</label>
             <label><input type="radio" name="rice" value="0" checked="true">300g</label>
             <label><input type="radio" name="rice" value="107">400g</label>
+            <label><input type="radio" name="rice" value="214">500g</label>
+            <label><input type="radio" name="rice" value="321">600g</label>
+            <label><input type="radio" name="rice" value="428">700g</label>
+            <label><input type="radio" name="rice" value="535">800g</label>
         </div>
     </div>
-    <div id="spice" class="row">
+    <div id="spiciness" class="row">
         <div class="col">
             <span>辛さ</span>
         </div>
         <div class="col-10">
-            <label><input type="radio" name="spice" value="0" checked="true">0</label>
-            <label><input type="radio" name="spice" value="21">1</label>
+            <label><input type="radio" name="spiciness" value="0" checked="true">0</label>
+            <label><input type="radio" name="spiciness" value="21">1</label>
+            <label><input type="radio" name="spiciness" value="42">2</label>
+            <label><input type="radio" name="spiciness" value="63">3</label>
+            <label><input type="radio" name="spiciness" value="84">4</label>
+            <label><input type="radio" name="spiciness" value="105">5以上</label>
+        </div>
+    </div>
+    <div id="sweetness" class="row">
+        <div class="col">
+            <span>甘さ</span>
+        </div>
+        <div class="col-10">
+            <label><input type="radio" name="sweetness" value="0" checked="true">0</label>
+            <label><input type="radio" name="sweetness" value="21">1</label>
+            <label><input type="radio" name="sweetness" value="42">2</label>
+            <label><input type="radio" name="sweetness" value="63">3</label>
+            <label><input type="radio" name="sweetness" value="84">4</label>
+            <label><input type="radio" name="sweetness" value="105">5</label>
         </div>
     </div>
     <div id='toppings' class="row">
@@ -128,7 +138,7 @@ window.addEventListener('load', () => {
         <!-- <p id="remindText">900円まであと<span id="remind"></span>円</p> -->
     </div>
     <div>
-        飽きた
+        飽きた2
     </div>
 </form>
 </div>
