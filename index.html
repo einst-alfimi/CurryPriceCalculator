@@ -1,144 +1,102 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<style>
-    label {
-        border: solid 1px red;
-        border-radius: 0.5em;
-    }
-</style>
-<script type="text/javascript" async="" src="./data.js"></script>
-<script>
-
-// トッピング生成(トッピング以外も生成したい)
-const makeToppings = () => {
-    const elem = document.getElementById('toppings-main');
-    toppings.forEach((topping) => {
-        const label = document.createElement('label');
-        const span = document.createElement('span');
-        const input = document.createElement('input');
-        span.textContent = `${topping.name}(${topping.price})`; // TODO あとで考える
-        input.type = 'checkbox';
-        input.name = 'toppings';
-        input.value = topping.price;
-        input.setAttribute('autocomplete', 'off');
-        label.appendChild(input);
-        label.appendChild(span);
-        elem.appendChild(label);
-    })
-}
-
-// 計算ヤクザ
-const refreshSum = () => {
-    const curry = document.getElementById('curry');
-    const sauce = Number(curry.sauce.value);
-    const rice = Number(curry.rice.value);
-    const spice = Number(curry.spiciness.value);
-    const sweet = Number(curry.sweetness.value);
-    const toppings = Number(culcToppings(curry));
-    const sum = sauce + rice + spice + sweet + toppings;
-    const remind = 900 - sum;
-
-    // dom更新
-    document.getElementById('sum').textContent = sum;
-    if(remind>0) {
-        document.getElementById('remind').textContent = 900 - sum;
-        document.getElementById('remindText').removeAttribute('style');
-        document.getElementById('isValid').setAttribute('style', 'display: none');
-    } else {
-        document.getElementById('isValid').removeAttribute('style');
-        document.getElementById('remindText').setAttribute('style', 'display: none');
-    }
-}
-
-// トッピング合計値計算
-const culcToppings = (curry) => {
-    let sum = 0;
-    [].forEach.call(curry.toppings, (topping) => {
-        sum += topping.checked ? Number(topping.value) : 0;
-    })
-    return sum;
-}
-
-// 起動時イベント
-window.addEventListener('load', () => {
-    // こんちです。
-    console.log('えっふカレーへようこそ！！！！！！！！１');
-    makeToppings();
-    refreshSum();
-
-    // input全てにonchange仕込む
-    [].forEach.call(document.querySelectorAll('input'), (tags) => {
-        tags.addEventListener('change', ()=> {
-            refreshSum();
-        })
-    });
-});
-</script>
+<html>
+<head>
+    <title>CurryPriceCalculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="カレー、食いたくね？">
+    <style>
+        label {
+            border: solid 1px red;
+            border-radius: 0.5em;
+            margin-right: 2px;
+        }
+        div.row {
+            border: solid 1px orange; 
+            border-radius: 0.3em;
+            margin-top: 3px;
+            padding-top: 3px;
+        }
+    </style>
+    <script type="text/javascript" async="" src="./data.js"></script>
+    <script type="text/javascript" async="" src="./main.js"></script>
+</head>
+<body>
 <div class="container">
-<form id="curry">
     <div id="sauce" class="row">
-        <div class="col">
-            <span>ソース</span>
-        </div>
-        <div class="col-10">
-            <label><input type="radio" name="sauce" value="505" checked="true">ポーク(甘口含む)</label>
-            <label><input type="radio" name="sauce" value="629">ビーフ/ハッシュドビーフ</label>
-        </div>
+        <h>カレー計算機</h>
     </div>
-    <div id="rice" class="row">
-        <div class="col">
-            <span>米</span>
+    <form id="curry">
+        <div id="sauce" class="row">
+            <div class="col-lg-2">
+                <span>ソース</span>
+            </div>
+            <div class="col-lg-10">
+                <label><input type="radio" name="sauce" value="505" checked="true">ポーク(甘口含む)</label>
+                <label><input type="radio" name="sauce" value="629">ビーフ/ハッシュドビーフ</label>
+            </div>
         </div>
-        <div class="col-10">
-            <label><input type="radio" name="rice" value="-51">200g</label>
-            <label><input type="radio" name="rice" value="0" checked="true">300g</label>
-            <label><input type="radio" name="rice" value="107">400g</label>
-            <label><input type="radio" name="rice" value="214">500g</label>
-            <label><input type="radio" name="rice" value="321">600g</label>
-            <label><input type="radio" name="rice" value="428">700g</label>
-            <label><input type="radio" name="rice" value="535">800g</label>
+        <div id="rice" class="row">
+            <div class="col-lg-2">
+                <span>米</span>
+            </div>
+            <div class="col-lg-10">
+                <label><input type="radio" name="rice" value="-51">200g</label>
+                <label><input type="radio" name="rice" value="0" checked="true">300g</label>
+                <label><input type="radio" name="rice" value="107">400g</label>
+                <label><input type="radio" name="rice" value="214">500g</label>
+                <label><input type="radio" name="rice" value="321">600g</label>
+                <label><input type="radio" name="rice" value="428">700g</label>
+                <label><input type="radio" name="rice" value="535">800g</label>
+            </div>
         </div>
-    </div>
-    <div id="spiciness" class="row">
-        <div class="col">
-            <span>辛さ</span>
+        <div id="spiciness" class="row">
+            <div class="col-lg-2">
+                <span>辛さ</span>
+            </div>
+            <div class="col-lg-10">
+                <label><input type="radio" name="spiciness" value="0" checked="true">0</label>
+                <label><input type="radio" name="spiciness" value="21">1</label>
+                <label><input type="radio" name="spiciness" value="42">2</label>
+                <label><input type="radio" name="spiciness" value="63">3</label>
+                <label><input type="radio" name="spiciness" value="84">4</label>
+                <label><input type="radio" name="spiciness" value="105">5以上</label>
+            </div>
         </div>
-        <div class="col-10">
-            <label><input type="radio" name="spiciness" value="0" checked="true">0</label>
-            <label><input type="radio" name="spiciness" value="21">1</label>
-            <label><input type="radio" name="spiciness" value="42">2</label>
-            <label><input type="radio" name="spiciness" value="63">3</label>
-            <label><input type="radio" name="spiciness" value="84">4</label>
-            <label><input type="radio" name="spiciness" value="105">5以上</label>
+        <div id="sweetness" class="row">
+            <div class="col-lg-2">
+                <span>甘さ</span>
+            </div>
+            <div class="col-lg-10">
+                <label><input type="radio" name="sweetness" value="0" checked="true">0</label>
+                <label><input type="radio" name="sweetness" value="21">1</label>
+                <label><input type="radio" name="sweetness" value="42">2</label>
+                <label><input type="radio" name="sweetness" value="63">3</label>
+                <label><input type="radio" name="sweetness" value="84">4</label>
+                <label><input type="radio" name="sweetness" value="105">5</label>
+            </div>
         </div>
-    </div>
-    <div id="sweetness" class="row">
-        <div class="col">
-            <span>甘さ</span>
+        <div id='toppings' class="row">
+            <div class="col-lg-2">
+                <span>トッピング</span>
+            </div>
+            <div class="col-lg-10 btn-group-toggle" id='toppings-main'>
+            </div>
         </div>
-        <div class="col-10">
-            <label><input type="radio" name="sweetness" value="0" checked="true">0</label>
-            <label><input type="radio" name="sweetness" value="21">1</label>
-            <label><input type="radio" name="sweetness" value="42">2</label>
-            <label><input type="radio" name="sweetness" value="63">3</label>
-            <label><input type="radio" name="sweetness" value="84">4</label>
-            <label><input type="radio" name="sweetness" value="105">5</label>
-        </div>
-    </div>
-    <div id='toppings' class="row">
-        <div class="col">
-            <span>トッピング</span>
-        </div>
-        <div class="col-10 btn-group-toggle" id='toppings-main' data-toggle="toppings">
-        </div>
-    </div>
 
-    <div><p>合計<span id="sum"></span> YEN</p>
-        <p id="remindText">900円まであと<span id="remind"></span>円</p>
-        <p id="isValid">900円OK</p>
-        <!-- <p id="remindText">900円まであと<span id="remind"></span>円</p> -->
-    </div>
-    <div>
-        飽きた2
-    </div>
-</form>
+        <div><p>合計<span id="sum"></span> YEN</p>
+            <p id="remindText">900円まであと<span id="remind"></span>円</p>
+            <p id="isValid">900円OK</p>
+            <p id="curryName"></p>
+        </div>
+
+        <div>
+            <p>作った人 <a href="https://twitter.com/aacsdf">aacsdf</a>, <a href="https://github.com/einst-alfimi/CurryPriceCalculator">github</a></p>
+            <p><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+        </div>
+    </form>
 </div>
+
+</body>
+</html>
