@@ -2,22 +2,13 @@
 <head>
     <title>CurryPriceCalculator</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="カレー、食いたくね？">
     <style>
-        label {
-            border: solid 1px red;
-            border-radius: 0.5em;
-            margin-right: 2px;
-        }
-        div.row {
-            border: solid 1px orange; 
-            border-radius: 0.3em;
-            margin-top: 3px;
-            padding-top: 3px;
-        }
+
     </style>
     <script type="text/javascript" async="" src="./data.js"></script>
     <script type="text/javascript" async="" src="./main.js"></script>
@@ -32,67 +23,49 @@
             <div class="col-lg-2">
                 <span>ソース</span>
             </div>
-            <div class="col-lg-10">
-                <label><input type="radio" name="sauce" value="505" checked="true">ポーク(甘口含む)</label>
-                <label><input type="radio" name="sauce" value="629">ビーフ/ハッシュドビーフ</label>
+            <div class="col-lg-10" id='sauce-main'>
             </div>
         </div>
         <div id="rice" class="row">
             <div class="col-lg-2">
                 <span>米</span>
             </div>
-            <div class="col-lg-10">
-                <label><input type="radio" name="rice" value="-51">200g</label>
-                <label><input type="radio" name="rice" value="0" checked="true">300g</label>
-                <label><input type="radio" name="rice" value="107">400g</label>
-                <label><input type="radio" name="rice" value="214">500g</label>
-                <label><input type="radio" name="rice" value="321">600g</label>
-                <label><input type="radio" name="rice" value="428">700g</label>
-                <label><input type="radio" name="rice" value="535">800g</label>
+            <div class="col-lg-10" id='rice-main'>
+                <input type="number" max="10" min="2" name="rice" value="3">00g
             </div>
         </div>
         <div id="spiciness" class="row">
             <div class="col-lg-2">
                 <span>辛さ</span>
             </div>
-            <div class="col-lg-10">
-                <label><input type="radio" name="spiciness" value="0" checked="true">0</label>
-                <label><input type="radio" name="spiciness" value="21">1</label>
-                <label><input type="radio" name="spiciness" value="42">2</label>
-                <label><input type="radio" name="spiciness" value="63">3</label>
-                <label><input type="radio" name="spiciness" value="84">4</label>
-                <label><input type="radio" name="spiciness" value="105">5以上</label>
+            <div class="col-lg-10" id='spiciness-main'>
             </div>
         </div>
         <div id="sweetness" class="row">
             <div class="col-lg-2">
                 <span>甘さ</span>
             </div>
-            <div class="col-lg-10">
-                <label><input type="radio" name="sweetness" value="0" checked="true">0</label>
-                <label><input type="radio" name="sweetness" value="21">1</label>
-                <label><input type="radio" name="sweetness" value="42">2</label>
-                <label><input type="radio" name="sweetness" value="63">3</label>
-                <label><input type="radio" name="sweetness" value="84">4</label>
-                <label><input type="radio" name="sweetness" value="105">5</label>
+            <div class="col-lg-10" id='sweetness-main'>
             </div>
         </div>
         <div id='toppings' class="row">
             <div class="col-lg-2">
                 <span>トッピング</span>
             </div>
-            <div class="col-lg-10 btn-group-toggle" id='toppings-main'>
+            <div class="col-lg-10" id='toppings-main'>
             </div>
         </div>
 
         <div><p>合計<span id="sum"></span> YEN</p>
             <p id="remindText">900円まであと<span id="remind"></span>円</p>
             <p id="isValid">900円OK</p>
+            <p><button type="button" id="allCheck">トッピング全チェック</button></p>
+            <p><button type="button" id="reset">トッピング初期化</button></p>
             <p id="curryName"></p>
         </div>
 
         <div>
-            <p>作った人 <a href="https://twitter.com/aacsdf">@aacsdf</a>, <a href="https://github.com/einst-alfimi/CurryPriceCalculator">github</a></p>
+            <p>作った人 <a href="https://twitter.com/aacsdf">aacsdf</a>, <a href="https://github.com/einst-alfimi/CurryPriceCalculator">github</a></p>
             <p><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
         </div>
     </form>
