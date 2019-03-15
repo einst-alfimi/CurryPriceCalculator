@@ -1,3 +1,29 @@
+const sauce = [
+    {name:'ポーク', price:505, default: true},
+    {name:'ポーク甘口', price:505, spiciness: false},
+    {name:'ビーフ', price:629},
+    {name:'ハッシュドビーフ', price:629},
+];
+
+const spiciness = [
+    {name:'0', price:0, default: true},
+    {name:'1', price:21},
+    {name:'2', price:42},
+    {name:'3', price:63},
+    {name:'4', price:84},
+    {name:'5', price:105},
+];
+
+const sweetness = [
+    {name:'0', price:0, default: true},
+    {name:'1', price:21},
+    {name:'2', price:42},
+    {name:'3', price:63},
+    {name:'4', price:84},
+    {name:'5', price:105},
+];
+
+// TODO タグ付け
 const toppings = [
     {name:'クリーミータルタルソース', price:51},
     {name:'ガーリック', price:51},
@@ -42,4 +68,4 @@ const toppings = [
     {name:'手仕込ヒレ・ささみカツ', price:460},
     {name:'手仕込ヒレカツ', price:463},
     {name:'手仕込とんかつ', price:463},
-]
+];
