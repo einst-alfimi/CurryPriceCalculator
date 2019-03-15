@@ -6,6 +6,7 @@ label {
 input:checked + label {
   border-radius: 0.2em;
   margin-right: 2px;
+  background-color: sandybrown;
   border: solid 1px red;
 }
 input[type="number"] {
