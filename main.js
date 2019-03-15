@@ -122,14 +122,14 @@ const initialize = () => {
     document.getElementById('allCheck').addEventListener('click', () => {
         const toppings = document.getElementById('curry').toppings;
         [].forEach.call(toppings, (topping) => {
-            topping.setAttribute('checked', true);
+            topping.checked = true;
         })
         refreshSum();
     });
     document.getElementById('reset').addEventListener('click', () => {
         const toppings = document.getElementById('curry').toppings;
         [].forEach.call(toppings, (topping) => {
-            topping.removeAttribute('checked');
+            topping.checked = false;
         })
         refreshSum();
     });
