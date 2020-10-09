@@ -2,4 +2,6 @@
 LETS GO.
 
 ### sample
-[Sample](http://caoc.jp/coco1/)
+[Sample latest](https://vigilant-poincare-b686de.netlify.app/)
+
+[Sample old](http://caoc.jp/coco1/)
