@@ -24,6 +24,7 @@ const makeDOM = (name, data, type) => {
 }
 
 // カレーの値段計算
+const target = 1000; // 予定金額
 const refreshSum = () => {
     const curry = document.getElementById('curry');
     const sauce = Number(curry.sauce.value);
@@ -32,12 +33,12 @@ const refreshSum = () => {
     const sweet = Number(curry.sweetness.value);
     const toppings = Number(calcToppings(curry));
     const sum = sauce + rice + spice + sweet + toppings;
-    const remind = 900 - sum; // 900円まであと...
+    const remind = target - sum; // 予定金額まであと...
 
     // 合計値dom更新
     document.getElementById('sum').textContent = sum;
     if(remind>0) {
-        document.getElementById('remind').textContent = 900 - sum;
+        document.getElementById('remind').textContent = target - sum;
         document.getElementById('remindText').removeAttribute('style');
         document.getElementById('isValid').setAttribute('style', 'display: none');
     } else {
@@ -88,9 +89,9 @@ const generateCurryName = (curry) => {
 const calcRice = (curry) => {
     const rice = Number(curry.rice.value);
     if(rice === 2){
-        return -51;
+        return -52; // 小盛りライス割引
     } else {
-        return (rice - 3) * 107 
+        return (rice - 3) * 110 //
     }
 }
 // トッピング合計値計算
@@ -137,6 +138,6 @@ const initialize = () => {
 
 // 起動時イベント
 window.addEventListener('load', () => {
-    console.log('目指せ900円');
+    console.log(`目指せ${target}円`);
     initialize();
 });
