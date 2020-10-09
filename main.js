@@ -110,6 +110,9 @@ const initialize = () => {
     makeDOM('spiciness', spiciness, 'radio');
     makeDOM('sweetness', sweetness, 'radio');
     makeDOM('toppings', toppings, 'checkbox');
+    [].forEach.call(document.getElementsByName('target'), (elem) => {
+        elem.textContent = target;
+    });
     // 描画更新
     refreshSum();    
 
